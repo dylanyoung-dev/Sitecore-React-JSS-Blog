@@ -1,0 +1,7 @@
+.vs
+packages
+
+**/obj/Debug
+**/bin
+
+*.user
