@@ -6,17 +6,13 @@ import Helmet from 'react-helmet';
 
 // Using bootstrap is completely optional. It's used here to provide a clean layout for samples,
 // without needing extra CSS in the sample app. Remove it in package.json as well if it's removed here.
-import 'bootstrap/dist/css/bootstrap.css';
+import './assets/css/base.css';
+import './assets/css/vendor.css';
+import './assets/css/main.css';
 import './assets/app.css';
 import logo from './assets/sc_logo.svg';
 
-/*
-  APP LAYOUT
-  This is where the app's HTML structure and root placeholders should be defined.
 
-  All routes share this root layout by default (this could be customized in RouteHandler),
-  but components added to inner placeholders are route-specific.
-*/
 
 // This is boilerplate navigation for sample purposes. Most apps should throw this away and use their own navigation implementation.
 // Most apps may also wish to use GraphQL for their navigation construction; this sample does not simply to support disconnected mode.
@@ -59,22 +55,104 @@ const Layout = ({ route }) => (
         {(route.fields && route.fields.pageTitle && route.fields.pageTitle.value) || 'Page'}
       </title>
     </Helmet>
-
-    {/*
-      VisitorIdentification is necessary for Sitecore Analytics to determine if the visitor is a robot.
-      If Sitecore XP (with xConnect/xDB) is used, this is required or else analytics will not be collected for the JSS app.
-      For XM (CMS-only) apps, this should be removed.
-
-      VI detection only runs once for a given analytics ID, so this is not a recurring operation once cookies are established.
-    */}
     <VisitorIdentification />
 
-    <Navigation />
+    <section class="s-pageheader">
+      <Placeholder name="jss-pageheader" rendering={route} />
+    </section>
 
-    {/* root placeholder for the app, which we add components to using route data */}
-    <div className="container">
+    <section class="s-content">
       <Placeholder name="jss-main" rendering={route} />
-    </div>
+    </section>
+
+
+    <footer class="s-footer">
+
+      <div class="s-footer__main">
+        <div class="row">
+
+          <div class="col-two md-four mob-full s-footer__sitelinks">
+
+            <h4>Quick Links</h4>
+
+            <ul class="s-footer__linklist">
+              <li><a href="#0">Home</a></li>
+              <li><a href="#0">Blog</a></li>
+              <li><a href="#0">Styles</a></li>
+              <li><a href="#0">About</a></li>
+              <li><a href="#0">Contact</a></li>
+              <li><a href="#0">Privacy Policy</a></li>
+            </ul>
+
+          </div>
+
+          <div class="col-two md-four mob-full s-footer__social">
+
+            <h4>Social</h4>
+
+            <ul class="s-footer__linklist">
+              <li><a href="#0">Facebook</a></li>
+              <li><a href="#0">Instagram</a></li>
+              <li><a href="#0">Twitter</a></li>
+              <li><a href="#0">Pinterest</a></li>
+              <li><a href="#0">Google+</a></li>
+              <li><a href="#0">LinkedIn</a></li>
+            </ul>
+
+          </div>
+
+          <div class="col-five md-full end s-footer__subscribe">
+
+            <h4>Our Newsletter</h4>
+
+            <p>Sit vel delectus amet officiis repudiandae est voluptatem. Tempora maxime provident nisi et fuga et enim exercitationem ipsam. Culpa consequatur occaecati.</p>
+
+            <div class="subscribe-form">
+              <form id="mc-form" class="group" novalidate="true">
+
+                <input type="email" value="" name="EMAIL" class="email" id="mc-email" placeholder="Email Address" required="" />
+
+                <input type="submit" name="subscribe" value="Send" />
+
+                <label for="mc-email" class="subscribe-message"></label>
+
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="s-footer__bottom">
+        <div class="row">
+          <div class="col-full">
+            <div class="s-footer__copyright">
+              <span>© Copyright Philosophy 2018</span>
+              <span>Site Template by <a href="https://colorlib.com/">Colorlib</a></span>
+            </div>
+
+            <div class="go-top">
+              <a class="smoothscroll" title="Back to Top" href="#top"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+
+
+    {/* <div id="preloader">
+      <div id="loader">
+        <div class="line-scale">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div> */}
   </React.Fragment>
 );
 
