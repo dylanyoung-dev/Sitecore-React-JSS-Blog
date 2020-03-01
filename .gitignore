@@ -5,3 +5,5 @@ packages
 **/bin
 
 *.user
+
+**/node_modules
